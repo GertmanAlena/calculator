@@ -1,5 +1,7 @@
-﻿def get_value():
-    return int(input('value = '))
+﻿import test
+
+def get_value():
+    return test.get_ints()
 
 def get_oper():
     return input('operator = ')
