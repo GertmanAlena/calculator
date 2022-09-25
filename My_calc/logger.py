@@ -19,7 +19,7 @@ def data_recording(value_x, value_y, value_z, rezult):
         file.write(time + '\n')
         file.write('\n' + f'{value_x} = value_x' + '\n')
         file.write(f'{value_y} = value_y' + '\n')
-        file.write(f'"{value_z}" = value_z' + '\n')
+        file.write(f'{value_z}" = value_z' + '\n')
         file.write(f'результат вычисления = {rezult}')
 
 
