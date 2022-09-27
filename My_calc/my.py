@@ -1,4 +1,5 @@
-﻿data = input('Введите пример - > ')    
+﻿data = input('Введите пример - > ')   
+ 
 operators_list = ['/', '*', '-', '+']
 priority_list = [1, 1, 2, 2]
 '''

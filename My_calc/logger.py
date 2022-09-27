@@ -13,14 +13,14 @@ from time import time
 # logging.error("An ERROR")
 # logging.critical("A message of CRITICAL severity")
 
-def data_recording(value_x, value_y, value_z, rezult):
+def data_recording(mathematical_expression, number_list, oper_list, rezult):
 
     time = dt.now().strftime('%d-%b-%y %H:%M:%S')
     with open('result.txt', 'w', encoding='utf-8') as file:
         file.write(time + '\n')
-        file.write('\n' + f'{value_x} = value_x' + '\n')
-        file.write(f'"{value_z}" = value_z' + '\n')
-        file.write(f'{value_y} = value_y' + '\n')
+        file.write('\n' + f'{mathematical_expression} = пример' + '\n')
+        file.write(f'"{number_list}" = список чисел' + '\n')
+        file.write(f'{oper_list} = список операций' + '\n')
         file.write(f'результат вычисления = {rezult}')
 
 

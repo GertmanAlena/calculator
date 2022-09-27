@@ -3,10 +3,9 @@ import ui
 import logger
 
 def buttun_click():
-    value_x = ui.get_value()
-    value_z = ui.get_oper()
-    value_y = ui.get_value()
-    data.num(value_x, value_z, value_y)
-    rezult = data.operator()
+    mathematical_expression = ui.get_data()
+    number_list, oper_list = data.get_number(mathematical_expression)
+    
+    rezult = data.calk(oper_list, number_list)
     ui.rez(rezult)
-    logger.data_recording(value_x, value_z, value_y, rezult)
+    logger.data_recording(mathematical_expression, number_list, oper_list, rezult)
