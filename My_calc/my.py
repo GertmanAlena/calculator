@@ -1,44 +1,73 @@
-﻿# with open('RLE.txt', 'w', encoding='utf-8') as data:
-#     simbol = 'AAAAAAAAAAAABBBBBBBBBBBCCCCCCCCCCDDDDDDEEEEEFFFFG python is sooooooo coooooool'
-#     for i in simbol:
-#         data.writelines(i)
+﻿data = input('Введите пример - > ')    
+operators_list = ['/', '*', '-', '+']
+priority_list = [1, 1, 2, 2]
+'''
+[(1, '/'), (1, '*'), (2, '+'), (2, '-')]
+'''
+unite_list = list(zip(priority_list, operators_list))
+print(unite_list)
 
-# with open('RLE.txt', 'r', encoding='utf-8') as data:
-#     source_text = ''
-#     for i in data:
-#         source_text += i
-    
-#     compressed_text = ''
-#     # no_alements = ' '
-#     alements = ''
-#     i=0
-#     while i < len(source_text):
-        
-#         alements = source_text[i]
-#         count_alements = 1
-#         while i + 1 < len(source_text) and source_text[i] == source_text[i+1]:
-#                 count_alements+=1
-#                 i+=1
-#         compressed_text = compressed_text + (str(count_alements) + alements)
-#         i+=1
-#     print(compressed_text)
-#     new = open('rez_RLE.txt', 'w',encoding='utf-8')
-#     new.writelines(compressed_text)
-#     new.close()
-# with open('rez_RLE.txt', 'r', encoding='utf-8') as data:
-#     text = ''
-#     for i in data:
-#         text+= i
-#     print(text)
+def get_number(data):
+    number = []
+    alem = []
+    temp_num = '' # тут склеиваем цифры
+    data += '='
+    for char in data:
+        if char.isdigit():
+            temp_num += char
+        else:
+            number.append(temp_num)
+            alem.append(char)
+            temp_num = ''
+    return number, alem[:-1]
+
+                                          #  [(1, '/'), (1, '*'), (2, '+'), (2, '-')]  unite_list
+number_list, oper_list = get_number(data)  # ['22', '2', '5', '2']   ['-', '+', '*', '=']
+print(number_list, oper_list)
+
+def pop_insert_list(number_list, index_alem, num, oper_list):
+    number_list.pop(index_alem)
+    number_list.pop(index_alem)
+    number_list.insert(index_alem, num)
+    oper_list.pop(index_alem)
    
-#     decod = ''
-#     alements = ''
-#     vrem_int = ''
-#     for i in text:
-#         if i.isdigit():
-#             vrem_int+=i
-#         else: 
-#             alements = i
-#             decod += int(vrem_int)*alements
-#             vrem_int = ''
-#     print('decod -> ', decod)
+def calk(unite_list, oper_list, number_list):
+    operators = {
+    '*': lambda x, y: int(x)*int(y),
+    '/': lambda x, y: int(x)/int(y),
+    '+': lambda x, y: int(x)+int(y),
+    '-': lambda x, y: int(x)-int(y)
+    }
+    for i in unite_list:                
+        if i[0] == 1:           # i в (1, '/'), (1, '*')
+            for j in oper_list: # ['-', '+', '*', '=']
+                if j == i[1]:
+                    index_alem = oper_list.index(j)
+                    if j in ' /':
+                        while j in oper_list:
+                            num = operators[j](number_list[index_alem], number_list[index_alem+1])
+                            pop_insert_list(number_list, index_alem, num, oper_list)
+                            
+                    if j in '*':
+                        while j in oper_list:
+                            num = operators[j](number_list[index_alem], number_list[index_alem+1])
+                            pop_insert_list(number_list, index_alem, num, oper_list)
+    for i in unite_list:    
+        if i[0] == 2:           
+            for j in oper_list:
+                
+                if j == i[1]:
+                    index_alem = oper_list.index(j)
+                   
+                    if j in '-':
+                        while j in oper_list:
+                            num = operators[j](number_list[index_alem], number_list[index_alem+1])
+                            pop_insert_list(number_list, index_alem, num, oper_list)
+                    if j in '+':
+                        while j in oper_list:
+                            num = operators[j](number_list[index_alem], number_list[index_alem+1])
+                            pop_insert_list(number_list, index_alem, num, oper_list)
+    return number_list
+                        
+rezult = calk(unite_list, oper_list, number_list)
+print(rezult)

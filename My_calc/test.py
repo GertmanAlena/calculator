@@ -1,4 +1,4 @@
-﻿import ui
+﻿
 
 def get_ints():
     '''
@@ -11,3 +11,8 @@ def get_ints():
         except ValueError:
             print('Ошибка. Ожидалось вещественное число.')
 
+def div(x, z, y):
+    try:
+        return x / y
+    except ZeroDivisionError:
+            print("нельзя делить на ноль")

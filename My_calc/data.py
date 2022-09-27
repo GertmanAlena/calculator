@@ -1,15 +1,16 @@
-﻿
+﻿import test
+
 x = 0
 y = 0
 z = 0
 
-def num(a, b, c):
+def num(a, c, b):
     global x
-    global y
     global z
+    global y
     x = a
-    y = b
     z = c
+    y = b
 
 def operator():
     if z == '+':
@@ -19,4 +20,5 @@ def operator():
     if z == '*':
         return x * y
     if z == '/':
-        return x / y
+        return test.div(x, z, y)
+    
