@@ -1,18 +1,21 @@
 ﻿
 
-def get_ints():
+from asyncio.log import logger
+
+
+def get_ints(char):
     '''
     проверка на ввод числа
     '''
     while True:
         try:
-            num = int(input('value = '))
-            return num
+            return int(char)
         except ValueError:
-            print('Ошибка. Ожидалось вещественное число.')
+            logger.input_ValueError(print('Ошибка. Ожидалось вещественное число.'))
 
 def div(x, z, y):
     try:
         return x / y
     except ZeroDivisionError:
             print("нельзя делить на ноль")
+

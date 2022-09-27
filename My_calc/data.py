@@ -12,6 +12,7 @@ def get_number(mathematical_expression):
             number.append(temp_num)
             alem.append(char)
             temp_num = ''
+       
     return number, alem[:-1]
 
 def pop_insert_list(number_list, index_alem, num, oper_list):
@@ -39,9 +40,14 @@ def calk(oper_list, number_list):
                     index_alem = oper_list.index(j)
                     if j in ' /':
                         while j in oper_list:
-                            num = operators[j](number_list[index_alem], number_list[index_alem+1])
-                            pop_insert_list(number_list, index_alem, num, oper_list)
-                            
+                            if int(number_list[index_alem+1]) == 0:
+                                print("нельзя делить на ноль") 
+                                break
+                            else:    
+                                num = operators[j](number_list[index_alem], number_list[index_alem+1])
+                                pop_insert_list(number_list, index_alem, num, oper_list)
+                             
+
                     if j in '*':
                         while j in oper_list:
                             num = operators[j](number_list[index_alem], number_list[index_alem+1])
@@ -62,4 +68,23 @@ def calk(oper_list, number_list):
                             num = operators[j](number_list[index_alem], number_list[index_alem+1])
                             pop_insert_list(number_list, index_alem, num, oper_list)
     return number_list
-                        
+
+def oper_x_y(x, y, oper):
+    if oper == '+':
+        return x + y
+    elif oper == '-':
+        return x - y  
+    elif oper == '*':
+        return x * y
+    elif oper == '/':
+        test.div(x, y)
+        return x / y 
+
+# def addition(x, y):
+#     return x + y
+# def difference(x, y):
+#     return x - y
+# def multiplication(x, y):
+#     return x * y
+# def division(x, y):
+#     return x / y

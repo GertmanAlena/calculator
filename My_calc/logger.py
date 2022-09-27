@@ -16,30 +16,27 @@ from time import time
 def data_recording(mathematical_expression, number_list, oper_list, rezult):
 
     time = dt.now().strftime('%d-%b-%y %H:%M:%S')
-    with open('result.txt', 'w', encoding='utf-8') as file:
+    with open('result.txt', 'a', encoding='utf-8') as file:
         file.write(time + '\n')
         file.write('\n' + f'{mathematical_expression} = пример' + '\n')
         file.write(f'"{number_list}" = список чисел' + '\n')
         file.write(f'{oper_list} = список операций' + '\n')
         file.write(f'результат вычисления = {rezult}')
 
+def data_recording_2(x, y, oper, rezult):
 
-        # file.write('{}; value_x:{}; value_y:{}; value_z:{}; rezult:{}'.format(time, value_x, value_y, value_z, rezult))
-# with open('students.txt', 'w', encoding='utf-8') as data:  # пока работа в txt через data
-# 	for i in Students:
-# 		data.write(i + '\n') #записали в txt файл через data.write наш словарь
-# def number_y(data):
-#     '''
-    
-#     '''
-#     time = dt.now.strftime('%d-%b-%y %H:%M:%S')
-#     with open('result.txt', 'a', encoding='utf-8') as file:
-#         file.write('{}; number_y:{}'.format(time, data))
+    time = dt.now().strftime('%d-%b-%y %H:%M:%S')
+    with open('result.txt', 'a', encoding='utf-8') as file:
+        file.write(time + '\n')
+        file.write('\n' + f'{x} = x' + '\n')
+        file.write(f'{y} = y' + '\n')
+        file.write(f'{oper} = действие' + '\n')
+        file.write(f'результат вычисления = {rezult}')
 
-# def number_selectoperation(data):
-#     '''
-    
-#     '''
-#     time = dt.now.strftime('%d-%b-%y %H:%M:%S')
-#     with open('result.txt', 'a', encoding='utf-8') as file:
-#         file.write('{}; number_selectoperation:{}'.format(time, data))
+def input_ValueError(mass):
+
+    time = dt.now().strftime('%d-%b-%y %H:%M:%S')
+    with open('result.txt', 'a', encoding='utf-8') as file:
+        file.write(time + '\n')
+        file.write('\n' + f'{mass} = ошибка' + '\n')
+        
